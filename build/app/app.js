@@ -11,12 +11,7 @@ define('app',
   [
     'angular',
     'jQuery',
-    'async',
-    'bootstrap_tagsinput',
     'ui_bootstrap',
-    'lodash',
-    'respond',
-    'tagsinput',
     'angularResource',
     'angularUIRouter',
     'controllers/index',
@@ -26,22 +21,14 @@ define('app',
   function(angular) {
     var ang_mod = angular.module('vrm-spa',
     [
+      'ui.bootstrap',
       'ngResource',
       'ui.router',
       'controllers',
       'directives',
-      'utility',
-      'ui.bootstrap',
+      'utility'
     ]);
    
-    var host;
-    if (!window.location.origin) {
-      host = window.location.protocol + "//" +
-        window.location.hostname + (window.location.port ? ':' + window.location.port: '');
-    }
-    else {
-      host = window.location.origin;
-    }
         
     return ang_mod;
   }

@@ -17,8 +17,6 @@ requirejs.config({
     domReady: 'lib/requirejs-domready/domReady',
     jQuery: 'lib/jquery/dist/jquery',
     async: 'lib/requirejs-plugins/src/async',
-    moment: 'lib/moment/moment',
-    angularmomentjs: 'lib/angular-momentjs/angular-momentjs',
     select2: 'lib/select2/select2',
     jQueryuitouchpunch: 'lib/jquery-ui-touch-punch/jquery.ui.touch-punch',
     lodash: 'lib/lodash/dist/lodash',
