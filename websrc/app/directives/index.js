@@ -1,15 +1,15 @@
 define('directives/index', [
   "angular",
   "directives/appHeader",
-  "directives/appFooter",
   "directives/appHomepage",
+  "directives/contactCard"
   ],
-  function(angular, appHeader, appFooter,appHomepage) {
+  function(angular, appHeader, appHomepage, contactCard) {
 
     var directives = angular.module("directives", []);
     directives.directive("appHeader", appHeader);
-    directives.directive("appFooter", appFooter);
     directives.directive("appHomepage", appHomepage);
+    directives.directive("contactCard", contactCard);
     return directives;
   }
 );

@@ -10,13 +10,21 @@
 
     <title>Contact manager page</title>
     <link rel="stylesheet" href="assets/vrmoutput.min.css">
+    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="app/lib/requirejs/require.js" data-main="app/config"></script>
-    <script src="js/vrm.js"></script>
+    <script src="app/lib/bootstrap/dist/js/bootstrap.min.js" data-main="app/config"></script>
+    <link rel="stylesheet" href="app/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="app/lib/bootstrap/dist/css/bootstrap-theme.min.css">
+    
+    
 </head>
 <body>
-  <header app-header> </header>
-  <section ui-view="content" app-homepage autoscroll='true'> SECTION</section>
-  <footer app-footer></footer>
+    <header app-header> </header>
+    <section ui-view="content" app-homepage autoscroll='true'></section>
+    
+    <script src="js/vrm.js"></script>
+
 </body>
 </html>
 
