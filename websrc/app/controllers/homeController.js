@@ -2,19 +2,27 @@ define([], function() {
     var homeController = function($scope, $modal, $rootScope, utilityFactory) {
         
         var self = this, contactList;
-        contactList = utilityFactory.singersData();        
-        self.contacts = contactList;
-        
-        $scope.open = function () {
-            console.log("Inside open fun");
+        utilityFactory.singersData();        
+        console.log("$rootScope.singersObj ", $rootScope.singersObj);
+        self.contacts = $rootScope.singersObj;
+                
+        $scope.$on("editContactId", function(response, contactId) {
+            $rootScope.selectedContactId = contactId;
             var modalInstance = $modal.open({
               animation: $scope.animationsEnabled,
-              templateUrl: 'myModalContent.html',
+              templateUrl: 'editContact.html',
               controller: 'editContactController'
             });
-            $rootScope.$broadcast("editContactLstnr");
-        }
-
+        });
+        
+        $scope.$on("deleteContactId", function(response, contactId) {
+            $rootScope.selectedContactId = contactId;
+            var modalInstance = $modal.open({
+              animation: $scope.animationsEnabled,
+              templateUrl: 'deleteContact.html',
+              controller: 'deleteContactController'
+            });
+        });
     };
     homeController.$inject = ["$scope", "$modal", "$rootScope", "utilityFactory"];
     return homeController;

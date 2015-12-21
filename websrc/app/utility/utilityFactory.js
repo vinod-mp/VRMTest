@@ -1,4 +1,4 @@
-'use strict';
+
 
 /*
  * Define all utility methods here so that it could
@@ -6,10 +6,59 @@
 */ 
 
 define([], function(){
-  var utilityFactory = function($sce, $location) {
+  var utilityFactory = function($rootScope) {
+      
     return {
+
+      getIndexOfContact: function(contactId) {
+          
+          indexes = $.map(this.singersObj, function(contactObj, index) {
+                if(contactObj.id == contactId) {
+                    return index;
+                }
+          })
+
+          return indexes;
+          
+      },
+        
+      setContact: function(contactId, contactObj) {
+          console.log("setcontact contactObj ", contactObj);
+          var indexes = this.getIndexOfContact(contactId);
+          console.log("indexes ", indexes);
+          console.log("this.singersObj indexes ", this.singersObj[indexes]);
+          this.singersObj[indexes].email = contactObj.email;
+          this.singersObj[indexes].phone = contactObj.phone;
+          this.singersObj[indexes].name = contactObj.name;
+          console.log("this.singersObj after set contact ", this.singersObj);
+          this.updateCard(contactId, contactObj);
+      },
+        
+      updateCard: function(contactId, contactObj){ 
+            var contactBoxEle = $(".contact-card-box[contact-id='" + contactId + "']");
+            
+            $(contactBoxEle).find(".contact-name").html(contactObj.name);
+            $(contactBoxEle).find(".contact-email").html(contactObj.email);
+            $(contactBoxEle).find(".contact-phone").html(contactObj.phone);
+      },
+        
+      getContoact: function(contactId) {
+            console.log("this.singersObj ", this.singersObj);
+            var contactObj = $.grep(this.singersObj, function(e){ return e.id == contactId; });
+            return contactObj;
+      },
+      
+      deleteContact: function(contactId) {
+            var index = this.getIndexOfContact(contactId);
+            console.log("index of element delete ", index);
+            this.singersObj.splice(index, 1);
+            var contactBoxEle = $(".contact-card-box[contact-id='" + contactId + "']");
+            contactBoxEle.remove();
+            return true;
+      },
+        
       singersData: function() {
-        var singersObj = [
+        $rootScope.singersObj = [
         {
             id: 1,
             name: "S. P. Balasubrahmanyam",
@@ -81,10 +130,17 @@ define([], function(){
             picture: "assets/ashking_singer.jpg"
         }];
       
-        return singersObj;
+        return this.singersObj;
+    },
+    refreshContacts: function(contactId) {  
+      var html = $(".contacts-list").html();
+      $('.contacts-list').html(html); 
+      console.log("Refreshed contacts ",contactId );
+      console.log();
     }
   };
   }
-  utilityFactory.$inject = ["$sce", "$location"];
+
+  utilityFactory.$inject = ["$rootScope"];
   return utilityFactory;
 });
