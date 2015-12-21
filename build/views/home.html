@@ -3,33 +3,52 @@
     <div class="col-sm-12">
       <div class="contacts-list">  
             <div ng-repeat="contact in homeCtrl.contacts">
-                <div contact-card contact-id="{{contact.id}}"></div>
+                <div contact-card contact-id="{{contact.id}}" class="contact-card-box"></div>
             </div>
         </div>
     </div>
   </div>
 
-    <script type="text/ng-template" id="myModalContent.html">
-        <div class="modal-header">
-            <h3 class="modal-title">I'm a modal!</h3>
-        </div>
-        <div class="modal-body">
-            <ul>
-                <li ng-repeat="item in items">
-                    <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
-                </li>
-            </ul>
-            Selected: <b>{{ selected.item }}</b>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-        </div>
-    </script>
-
-    <button type="button" class="btn btn-default" ng-click="open()">Open me!</button>
-    <button type="button" class="btn btn-default" ng-click="open('lg')">Large modal</button>
-    <button type="button" class="btn btn-default" ng-click="open('sm')">Small modal</button>
-    <button type="button" class="btn btn-default" ng-click="toggleAnimation()">Toggle Animation ({{ animationsEnabled }})</button>
-    <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+  <script type="text/ng-template" id="editContact.html">
+     <div class="modal-header">
+        <h3 class="modal-title">Edit contact</h3>
+     </div>
+     <div class="modal-body contact-modal-body">
+          <form role="form" contact-edit-form>
+            <div class="form-group">
+              <label for="cname">Name:</label>
+              <input type="text" class="form-control" id="cname">
+            </div>
+            <div class="form-group">
+              <label for="phone">Email:</label>
+              <input type="text" class="form-control" id="phone">
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="text" class="form-control" id="email">
+            </div>
+          </form>
+     </div>
+     <div class="modal-footer">
+       <button class="btn btn-primary" type="button" ng-click="confirm()">Confirm</button>
+       <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+     </div>
+  </script>
+    
+  <script type="text/ng-template" id="deleteContact.html">
+     <div class="modal-header">
+        <h3 class="modal-title">Delete contact</h3>
+     </div>
+     <div delete-contact class="modal-body contact-modal-body delete-modal">
+         <div class="contact-img-container"> <img class="contact-picture" id="contact-pictureid" src=""></div>
+          <div class="contact-name" id="contact-nameId"></div>
+          <h4>Are you sure you want to delete this contact?</h4>
+     </div>
+     <div class="modal-footer">
+       <button class="btn btn-primary" type="button" ng-click="confirm()">Confirm</button>
+       <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+     </div>
+  </script>
+    
+    
 </div>

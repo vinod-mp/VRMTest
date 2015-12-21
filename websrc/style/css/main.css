@@ -30,7 +30,7 @@ header {
     box-shadow: 3px 3px 4px 0px rgba(186,184,186,1);
 }
 
-.contact-email {
+.contact-email, .contact-name {
     word-break: break-all;
 }
 
@@ -72,4 +72,12 @@ header {
 
 .contacts-list .contact-card-col {
     padding-right: 0; 
+}
+
+ .contact-modal-body.delete-modal {
+    height: 180px;
+}
+
+.contact-picture {
+    height: 150px;   
 }

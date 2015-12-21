@@ -8,15 +8,16 @@ define(function(){
             deleteContact: "&"
           },
           controller: function($scope) {
-            
-              $scope.$on("editContactLstnr", function(response) {
-                console.log("Inside listener");
-              });
-
 
             $scope.editContact = function() {
                 console.log("Element ", $scope.contactId);
-            }  
+                $rootScope.$broadcast("editContactId", $scope.contactId);
+            };
+              
+            $scope.deleteContact = function() {
+                console.log("deleting contact"); 
+                $rootScope.$broadcast("deleteContactId", $scope.contactId);
+            }
           },
           link: function(scope, element, $attr) {
              var contacts = utilityFactory.singersData(), contactIdEle, 
@@ -33,23 +34,7 @@ define(function(){
               contactPicture.attr("src", contacts[contactId].picture);
               contactEmail.html(contacts[contactId].email);
               contactPhone.html(contacts[contactId].phone);
-              /*
-              scope.editContact = function() {
-                console.log("Element ", $(this));
-                console.log("Contact id ", $attr.contactId);
-                          
-                $scope.open = function () {
-                    $modal.open({
-                      animation: $scope.animationsEnabled,
-                      templateUrl: 'confirmCreateLabel',
-                      controller: 'createLabelDialogController'
-                    });
-                };
-                  
-              }*/
-              scope.deleteContact = function() {
-                alert("delete contact");   
-              }
+
           }
       };
   };
