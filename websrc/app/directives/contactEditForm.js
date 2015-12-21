@@ -2,30 +2,16 @@ define([], function(){
   var contactEditForm = function($rootScope, utilityFactory) {
     return {
       link: function($scope, element) {
-            console.log("element ", element);
-                   
-            var self = this, contactList;
-            contactList = utilityFactory.singersData();        
-            self.contacts = contactList;
 
-            var contactId;
+        var contactId = utilityFactory.getSelectedContactId(),
+        cardBox = $(".contact-card-box[contact-id='" + contactId + "']"),
+        cardNameEle = $(cardBox).find(".contact-card-col .contact-name"),
+        cardPhoneEle = $(cardBox).find(".contact-card-col .contact-phone"),
+        cardEmailEle = $(cardBox).find(".contact-card-col .contact-email");
 
-            contactId = $rootScope.selectedContactId;
-
-            console.log(" $rootScope.selectedContactId contactId ", contactId);
-
-            var editableContactObj = utilityFactory.getContoact(contactId);
-
-            if(editableContactObj.length == 1) {
-                editableContactObj = editableContactObj[0];
-                console.log("editableContactObj ", editableContactObj);
-                console.log("editableContactObj.name ", editableContactObj.name);
-                console.log("$(.contact-modal-body #cname) ", $(".contact-modal-body #cname"));
-                $(".contact-modal-body #cname").val(editableContactObj.name);
-                $(".contact-modal-body #phone").val(editableContactObj.phone);
-                $(".contact-modal-body #email").val(editableContactObj.email);
-            }
-
+        $(".contact-modal-body #cname").val(cardNameEle.html());
+        $(".contact-modal-body #phone").val(cardPhoneEle.html());
+        $(".contact-modal-body #email").val(cardEmailEle.html());
       },
     };
   };

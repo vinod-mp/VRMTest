@@ -3,7 +3,6 @@ define([], function() {
         
         var self = this, contactList;
         utilityFactory.singersData();        
-        console.log("$rootScope.singersObj ", $rootScope.singersObj);
         self.contacts = $rootScope.singersObj;
                 
         $scope.$on("editContactId", function(response, contactId) {

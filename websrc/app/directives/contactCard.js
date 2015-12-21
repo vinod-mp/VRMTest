@@ -10,18 +10,17 @@ define(function(){
           controller: function($scope) {
 
             $scope.editContact = function() {
-                console.log("Element ", $scope.contactId);
                 $rootScope.$broadcast("editContactId", $scope.contactId);
             };
               
             $scope.deleteContact = function() {
-                console.log("deleting contact"); 
                 $rootScope.$broadcast("deleteContactId", $scope.contactId);
             }
           },
+          
           link: function(scope, element, $attr) {
-             var contacts = utilityFactory.singersData(), contactIdEle, 
-                 contactId, contactNameEle;
+             var contacts =  $rootScope.singersObj, contactIdEle, 
+                 contactId, contactNameEle, contactPicture, contactEmail, contactPhone;
               
               contactId = parseInt($attr.contactId) - 1;
               

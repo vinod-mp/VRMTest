@@ -11,26 +11,19 @@ define([], function(){
     return {
 
       getIndexOfContact: function(contactId) {
-          
-          indexes = $.map(this.singersObj, function(contactObj, index) {
+          indexes = $.map( $rootScope.singersObj, function(contactObj, index) {
                 if(contactObj.id == contactId) {
                     return index;
                 }
           })
-
           return indexes;
-          
       },
         
       setContact: function(contactId, contactObj) {
-          console.log("setcontact contactObj ", contactObj);
           var indexes = this.getIndexOfContact(contactId);
-          console.log("indexes ", indexes);
-          console.log("this.singersObj indexes ", this.singersObj[indexes]);
-          this.singersObj[indexes].email = contactObj.email;
-          this.singersObj[indexes].phone = contactObj.phone;
-          this.singersObj[indexes].name = contactObj.name;
-          console.log("this.singersObj after set contact ", this.singersObj);
+          $rootScope.singersObj[indexes].email = contactObj.email;
+          $rootScope.singersObj[indexes].phone = contactObj.phone;
+          $rootScope.singersObj[indexes].name = contactObj.name;
           this.updateCard(contactId, contactObj);
       },
         
@@ -43,15 +36,13 @@ define([], function(){
       },
         
       getContoact: function(contactId) {
-            console.log("this.singersObj ", this.singersObj);
-            var contactObj = $.grep(this.singersObj, function(e){ return e.id == contactId; });
+            var contactObj = $.grep( $rootScope.singersObj, function(e){ return e.id == contactId; });
             return contactObj;
       },
       
       deleteContact: function(contactId) {
             var index = this.getIndexOfContact(contactId);
-            console.log("index of element delete ", index);
-            this.singersObj.splice(index, 1);
+            $rootScope.singersObj.splice(index, 1);
             var contactBoxEle = $(".contact-card-box[contact-id='" + contactId + "']");
             contactBoxEle.remove();
             return true;
@@ -130,13 +121,10 @@ define([], function(){
             picture: "assets/ashking_singer.jpg"
         }];
       
-        return this.singersObj;
+        return $rootScope.singersObj;
     },
-    refreshContacts: function(contactId) {  
-      var html = $(".contacts-list").html();
-      $('.contacts-list').html(html); 
-      console.log("Refreshed contacts ",contactId );
-      console.log();
+    getSelectedContactId: function() {
+        return $rootScope.selectedContactId;   
     }
   };
   }
