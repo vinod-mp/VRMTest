@@ -75,7 +75,8 @@ header {
 }
 
  .contact-modal-body.delete-modal {
-    height: 180px;
+    height: 200px;
+    padding: 10px;
 }
 
 .contact-picture {
