@@ -23,7 +23,6 @@ define([], function() {
         }
 
         $rootScope.$on("addedContact", function(event, contactObj) {
-            console.log("addedContact contactObj : ", contactObj);
             $scope.contacts.push(contactObj);    
         });
             
@@ -43,14 +42,20 @@ define([], function() {
             });
         }
         
-        $rootScope.$on("deletedContact", function() {
-
+        $rootScope.$on("deletedContact", function(event, contactId) {
+            deleteContactFromContacts(contactId);
+        });
+        
+        var deleteContactFromContacts  =  function(contactId) {
+            console.log("Deleting contact id is ", contactId);
             for(i in $scope.contacts) {
-                if($scope.contacts[i].id == deletingContactId) {
+                if($scope.contacts[i].id == contactId) {
                     $scope.contacts.splice(i,1);
                 }
             }     
-        });
+        }
+        
+        $scope.deleteContactFromContacts = deleteContactFromContacts;
         
         $scope.cancel = function() {
              $modalInstance.dismiss('cancel');
@@ -81,6 +86,7 @@ define([], function() {
             }   
         }
         
+        $scope.getContactObjById = getContactObjById;
         
         function updateContact(id, name, phone, email) {
             var contact = getContactObjById(id);
@@ -90,6 +96,8 @@ define([], function() {
             $scope.newcontact = angular.copy(contact);
             $scope.contacts[i] = $scope.newcontact;
         }
+        
+         $scope.updateContact = updateContact;
     };
     
     return homeController;

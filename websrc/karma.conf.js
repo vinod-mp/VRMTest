@@ -31,7 +31,7 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
         'views/*.html': ['ng-html2js-define'],
-        'app/*[!lib]/*.js':'coverage'
+        'app/*[lib]/*.js':'coverage'
     },
 
     ngHtml2JsPreprocessor: {
