@@ -9,47 +9,9 @@ define([], function(){
   var utilityFactory = function($rootScope) {
       
     return {
-
-      getIndexOfContact: function(contactId) {
-          indexes = $.map( $rootScope.singersObj, function(contactObj, index) {
-                if(contactObj.id == contactId) {
-                    return index;
-                }
-          })
-          return indexes;
-      },
         
-      setContact: function(contactId, contactObj) {
-          var indexes = this.getIndexOfContact(contactId);
-          $rootScope.singersObj[indexes].email = contactObj.email;
-          $rootScope.singersObj[indexes].phone = contactObj.phone;
-          $rootScope.singersObj[indexes].name = contactObj.name;
-          this.updateCard(contactId, contactObj);
-      },
-        
-      updateCard: function(contactId, contactObj){ 
-            var contactBoxEle = $(".contact-card-box[contact-id='" + contactId + "']");
-            
-            $(contactBoxEle).find(".contact-name").html(contactObj.name);
-            $(contactBoxEle).find(".contact-email").html(contactObj.email);
-            $(contactBoxEle).find(".contact-phone").html(contactObj.phone);
-      },
-        
-      getContoact: function(contactId) {
-            var contactObj = $.grep( $rootScope.singersObj, function(e){ return e.id == contactId; });
-            return contactObj;
-      },
-      
-      deleteContact: function(contactId) {
-            var index = this.getIndexOfContact(contactId);
-            $rootScope.singersObj.splice(index, 1);
-            var contactBoxEle = $(".contact-card-box[contact-id='" + contactId + "']");
-            contactBoxEle.remove();
-            return true;
-      },
-        
-      singersData: function() {
-        $rootScope.singersObj = [
+      getSingersData: function() {
+        singersData = [
         {
             id: 1,
             name: "S. P. Balasubrahmanyam",
@@ -121,10 +83,7 @@ define([], function(){
             picture: "assets/ashking_singer.jpg"
         }];
       
-        return $rootScope.singersObj;
-    },
-    getSelectedContactId: function() {
-        return $rootScope.selectedContactId;   
+        return singersData;
     }
   };
   }

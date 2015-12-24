@@ -1,11 +1,11 @@
 define([], function() {
-    var deleteContactController = function($scope, $rootScope, $modalInstance, utilityFactory) {
+    var deleteContactController = function($scope, $rootScope, $modalInstance, deletingContactObj) {
         
-        var self = this,
-        contactId = utilityFactory.getSelectedContactId();
-            
-        $scope.confirm = function () {
-            utilityFactory.deleteContact(contactId);
+        $scope.deletingPic = deletingContactObj.picture;
+        $scope.deletingName = deletingContactObj.name;
+        
+        $scope.deleteConfirm = function () {
+            $rootScope.$broadcast("deletedContact", deletingContactObj.id);
             $modalInstance.close();
         };
 
@@ -13,6 +13,5 @@ define([], function() {
             $modalInstance.dismiss('cancel');
         };
     };
-    deleteContactController.$inject = ["$scope", "$rootScope", "$modalInstance", "utilityFactory"];
     return deleteContactController;
 });
