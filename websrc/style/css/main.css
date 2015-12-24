@@ -60,8 +60,8 @@ header {
     bottom: 0;
     position: absolute;
     right: 0;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 
 }
 
@@ -80,5 +80,11 @@ header {
 }
 
 .contact-picture {
-    height: 150px;   
+    height: 150px; 
+    max-width: 130px;
+}
+
+.contact-action-area {
+    text-align: right;
+    padding: 10px 15px;
 }

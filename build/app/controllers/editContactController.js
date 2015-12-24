@@ -1,21 +1,18 @@
 define([], function() {
-    var editContactController = function($scope, $rootScope, $modalInstance, utilityFactory) {
+    var editContactController = function($scope, $rootScope, $modalInstance, editingContactObj) {
         
-        var self = this, contactList;
-        contactList = $rootScope.singersObj;        
-        self.contacts = contactList;
+        console.log("editContactController editid ", editingContactObj);
         
-        var contactId = utilityFactory.getSelectedContactId();
+        $scope.editedName = editingContactObj.name;
+        $scope.editedPhone = editingContactObj.phone;
+        $scope.editedEmail = editingContactObj.email;
+        
+        $scope.editedConfirm = function () {
             
-        var editableContactObj = utilityFactory.getContoact(contactId);
-        
-        $scope.confirm = function () {
-            if(editableContactObj.length == 1) {
-                editableContactObj.name = $(".contact-modal-body #cname").val();
-                editableContactObj.phone = $(".contact-modal-body #phone").val();
-                editableContactObj.email = $(".contact-modal-body #email").val();            
-                utilityFactory.setContact(contactId, editableContactObj);
-            }
+            editingContactObj.name = $scope.editedName;
+            editingContactObj.phone = $scope.editedPhone;
+            editingContactObj.email = $scope.editedEmail;
+            
             $modalInstance.close();
         };
 
@@ -23,6 +20,5 @@ define([], function() {
             $modalInstance.dismiss('cancel');
         };
     };
-    editContactController.$inject = ["$scope", "$rootScope", "$modalInstance", "utilityFactory"];
     return editContactController;
 });
