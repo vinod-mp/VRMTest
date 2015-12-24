@@ -17,9 +17,6 @@ requirejs.config({
     domReady: 'lib/requirejs-domready/domReady',
     jQuery: 'lib/jquery/dist/jquery',
     async: 'lib/requirejs-plugins/src/async',
-    select2: 'lib/select2/select2',
-    jQueryuitouchpunch: 'lib/jquery-ui-touch-punch/jquery.ui.touch-punch',
-    lodash: 'lib/lodash/dist/lodash',
     respond: 'lib/respond/dest/respond.src',
     typeahead: 'lib/typeahead.js/dist/typeahead.bundle',
     tagsinput: 'lib/bootstrap-tagsinput/dist/bootstrap-tagsinput',
@@ -28,7 +25,6 @@ requirejs.config({
     ui_select2: 'lib/angular-ui-select2/src/select2',
     jasmine: 'lib/jasmine/lib/jasmine-core', 
     angular_mocks: 'lib/angular-mocks/angular-mocks',
-    httpconfig: 'httpconfig',
     truncate: 'lib/angularjs-truncate/src/truncate',
     'views': '../views'
  },
@@ -37,13 +33,6 @@ requirejs.config({
     angular: {
       deps: ['jQuery'],
       exports: 'angular'
-    },
-    moment: {
-      exports: 'moment'
-    },
-    angularmomentjs: {
-      deps: ['moment', 'angular'],
-      exports: 'angularmomentjs'
     },
     angular_mocks : {
       deps:["angular"]
@@ -73,19 +62,9 @@ requirejs.config({
     jqueruitouchpunch:{
       deps: ['jQuery']
     },
-    angulargooglemaps: {
-      deps: ['gmaps', 'lodash']
-    },
     bootstrap_tagsinput : {
       deps:['jQuery', 'angular'],
       exports: 'bootstrap_tagsinput'
-    },
-    tagsinput : {
-      exports: 'tagsinput',
-      deps: ['jQuery']
-    },
-    typeahead: {
-      deps: ['jQuery']
     },
     ui_bootstrap: {
       deps: ['angular']

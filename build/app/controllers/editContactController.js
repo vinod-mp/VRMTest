@@ -8,6 +8,15 @@ define([], function() {
         $scope.editedEmail = editingContactObj.email;
         
         $scope.editedConfirm = function () {
+                 
+            if(typeof $scope.editedName == "undefined" ||
+              $scope.editedName.trim() == "" ||
+              typeof $scope.editedPhone == "undefined" ||
+              $scope.editedPhone.trim() == "" ||
+              typeof $scope.editedEmail == "undefined" ||
+              $scope.editedEmail.trim() == "") {
+                return;
+            }
             
             editingContactObj.name = $scope.editedName;
             editingContactObj.phone = $scope.editedPhone;
