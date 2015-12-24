@@ -23,7 +23,6 @@ define([], function() {
         }
 
         $rootScope.$on("addedContact", function(event, contactObj) {
-            console.log("addedContact contactObj : ", contactObj);
             $scope.contacts.push(contactObj);    
         });
             
